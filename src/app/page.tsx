@@ -7,8 +7,8 @@ export default function Home(): JSX.Element {
   const [rating, setRating] = useState<number>(2);
 
   return (
-    <div>
-      <Htag tag="h1">counter</Htag>
+    <article>
+      <Htag tag="h1">Главная страница</Htag>
       <Button arrow="right" appearence="ghost">
         ghost
       </Button>
@@ -44,6 +44,6 @@ export default function Home(): JSX.Element {
         red
       </Tag>
       <Rating rating={rating} isEditable={true} setRating={setRating} />
-    </div>
+    </article>
   );
 }
