@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IIconStarProps extends React.SVGProps<SVGSVGElement> {}
+type IIconStarProps = React.SVGProps<SVGSVGElement>;
 
 const IconStar: React.FC<IIconStarProps> = ({ className, ...props }) => {
   return (

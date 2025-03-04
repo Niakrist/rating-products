@@ -1,5 +1,5 @@
 import { Footer, Header, Sidebar } from "@/components";
-import type { Metadata } from "next";
+import { Metadata } from "next/types";
 import { Noto_Sans } from "next/font/google";
 
 import cn from "classnames";

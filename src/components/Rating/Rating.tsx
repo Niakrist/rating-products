@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "@/ui";
-import React, { JSX, useEffect, useState, KeyboardEvent } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import { IRatingProps } from "./Rating.props";
 import cn from "classnames";
 
@@ -40,9 +40,9 @@ export const Rating: React.FC<IRatingProps> = ({
 
   const constructRating = (currentRaing: number) => {
     const updateArray = ratingArray.map((r: JSX.Element, i: number) => {
-      console.log("I: ", i);
       return (
         <span
+          key={i}
           className={cn(styles.star, {
             [styles.filled]: i < currentRaing,
             [styles.editable]: isEditable,
@@ -65,7 +65,7 @@ export const Rating: React.FC<IRatingProps> = ({
   };
 
   return (
-    <div>
+    <div {...props}>
       {ratingArray.map((r, i) => (
         <span key={i}>{r}</span>
       ))}

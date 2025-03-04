@@ -2,13 +2,17 @@
 import React from "react";
 import { Button, Htag, P, Tag } from "@/ui";
 import { getMenu } from "@/api/menu";
+import { IMenuItem } from "@/interfaces/menu.interfaces";
+
+interface IHomeProps {
+  menu: IMenuItem[];
+  firstCategory: number;
+}
 
 export default async function Home() {
   // const [rating, setRating] = useState<number>(2);
 
   const menu = await getMenu(0);
-
-  console.log("menu: ", menu);
 
   return (
     <article>
@@ -50,6 +54,11 @@ export default async function Home() {
       {/* <Rating rating={rating} isEditable={true} setRating={setRating} /> */}
 
       <div>{JSON.stringify(menu)}</div>
+      <ul>
+        {menu.map((m, i) => (
+          <li key={i}>{m._id?.secondCategory}</li>
+        ))}
+      </ul>
     </article>
   );
 }

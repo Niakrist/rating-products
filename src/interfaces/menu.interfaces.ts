@@ -9,7 +9,7 @@ export interface IPageItem {
 
 export interface IMenuItem {
   _id: {
-    seconsCategory: string;
+    secondCategory: string;
   };
   isOpen: boolean;
   pages: IPageItem[];
