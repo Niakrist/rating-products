@@ -1,13 +1,14 @@
-"use client";
-import React, { useState } from "react";
+// "use client";
+import React from "react";
 import { Button, Htag, P, Tag } from "@/ui";
-import { Rating } from "@/components";
 import { getMenu } from "@/api/menu";
 
 export default async function Home() {
-  const [rating, setRating] = useState<number>(2);
+  // const [rating, setRating] = useState<number>(2);
 
   const menu = await getMenu(0);
+
+  console.log("menu: ", menu);
 
   return (
     <article>
@@ -46,7 +47,7 @@ export default async function Home() {
       <Tag size="medium" color="red">
         red
       </Tag>
-      <Rating rating={rating} isEditable={true} setRating={setRating} />
+      {/* <Rating rating={rating} isEditable={true} setRating={setRating} /> */}
 
       <div>{JSON.stringify(menu)}</div>
     </article>
