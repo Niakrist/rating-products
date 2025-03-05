@@ -1,8 +1,10 @@
 // "use client";
 import React from "react";
 import { Button, Htag, P, Tag } from "@/ui";
-import { getMenu } from "@/api/menu";
 import { IMenuItem } from "@/interfaces/menu.interfaces";
+import { Menu } from "@/components/Menu/Menu";
+import { getMenu } from "@/api/menu";
+import { getProducts } from "@/api/products";
 
 interface IHomeProps {
   menu: IMenuItem[];
@@ -13,6 +15,9 @@ export default async function Home() {
   // const [rating, setRating] = useState<number>(2);
 
   const menu = await getMenu(0);
+  const products = await getProducts("photoshop");
+
+  console.log("products: ", products);
 
   return (
     <article>
@@ -53,12 +58,7 @@ export default async function Home() {
       </Tag>
       {/* <Rating rating={rating} isEditable={true} setRating={setRating} /> */}
 
-      <div>{JSON.stringify(menu)}</div>
-      <ul>
-        {menu.map((m, i) => (
-          <li key={i}>{m._id?.secondCategory}</li>
-        ))}
-      </ul>
+      {menu && <Menu menu={menu} />}
     </article>
   );
 }
