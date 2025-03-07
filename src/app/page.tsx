@@ -1,4 +1,3 @@
-// "use client";
 import React from "react";
 import { Button, Htag, P, Tag } from "@/ui";
 import { IMenuItem } from "@/interfaces/menu.interfaces";
@@ -14,10 +13,7 @@ interface IHomeProps {
 export default async function Home() {
   // const [rating, setRating] = useState<number>(2);
 
-  const menu = await getMenu(0);
-  const products = await getProducts("photoshop");
-
-  console.log("products: ", products);
+  const products = await getProducts("Photoshop", 10);
 
   return (
     <article>
@@ -40,7 +36,6 @@ export default async function Home() {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
         accusamus.
       </P>
-
       <Tag size="medium" color="ghost">
         ghost
       </Tag>
@@ -56,9 +51,6 @@ export default async function Home() {
       <Tag size="medium" color="red">
         red
       </Tag>
-      {/* <Rating rating={rating} isEditable={true} setRating={setRating} /> */}
-
-      {menu && <Menu menu={menu} />}
     </article>
   );
 }

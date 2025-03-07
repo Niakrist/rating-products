@@ -26,8 +26,6 @@ interface IProductsPageProps {
 export default async function ProductsPage({ params }: IProductsPageProps) {
   const { alias } = await params;
 
-  console.log("alias: ", alias);
-
   const pageData = await getPage(alias);
 
   if (!pageData) {

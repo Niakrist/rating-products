@@ -22,7 +22,7 @@ export interface ITopPageModel {
   tagsTitle: string;
   metaTitle: string;
   metaDescription: string;
-  firstCategory: TopLevelCategory.Courses;
+  firstCategory: TopLevelCategory;
   advantages: TopPageAdvantage[];
   createdAt: string;
   updatedAt: string;

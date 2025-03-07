@@ -1,0 +1,61 @@
+.menu {
+}
+
+.firstLevel {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 20px;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.firstLevelActive {
+  color: var(--primary);
+}
+.firstLevel:hover {
+  color: var(--primary);
+}
+
+.secondBlock {
+  margin-top: 15px;
+  margin-left: 12px;
+  padding-left: 32px;
+  border-left: 1px solid #dfdfdf;
+}
+
+.secondLevel {
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: var(--grey-dark);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.secondLevelBlock {
+}
+
+.secondLevelBlockOpened {
+  margin-bottom: 20px;
+  border-bottom: 1px solid red;
+}
+
+.thridLevel {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: var(--grey-dark);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.thridLevelActive,
+.thridLevel:hover {
+  color: var(--primary);
+}

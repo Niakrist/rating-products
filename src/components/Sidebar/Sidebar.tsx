@@ -1,6 +1,9 @@
 import React from "react";
+import { Menu } from "../Menu/Menu";
 import { ISidebarProps } from "./Sidebar.props";
 
-export const Sidebar: React.FC<ISidebarProps> = ({ ...props }) => {
-  return <aside {...props}>Sidebar</aside>;
+export const Sidebar = async ({
+  ...props
+}: ISidebarProps): Promise<React.JSX.Element> => {
+  return <aside {...props}>{await Menu()}</aside>;
 };
