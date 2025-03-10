@@ -1,7 +1,7 @@
 import { Footer, Header, Sidebar } from "@/components";
 import { Metadata } from "next/types";
 import { Noto_Sans } from "next/font/google";
-
+import { getMenu } from "@/api/menu";
 import cn from "classnames";
 
 import "./globals.css";
@@ -24,13 +24,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menu = await getMenu(0);
+
   return (
     <html lang="ru">
       <body className={cn(getNotoSana.className, styles.wrapper)}>
         <Header className={styles.header} />
-        {/* Не уверен, что это будет работать */}
-        {/* {await Sidebar({className={styles.sidebar}}) } */}
-        {await Sidebar({ className: styles.sidebar })}
+        <Sidebar menu={menu} className={styles.sidebar} />
         <div className={styles.content}>{children}</div>
         <Footer className={styles.footer} />
       </body>

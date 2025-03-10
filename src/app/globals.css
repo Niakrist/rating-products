@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+nextjs-portal {
+  position: absolute;
+  display: none;
+}
+
 html,
 body {
   margin: 0;
