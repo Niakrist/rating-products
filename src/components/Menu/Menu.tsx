@@ -40,7 +40,6 @@ const firstLevelMenu: IFirstLevelMenuItem[] = [
 ];
 
 interface IMenuProps {
-  // setMenu?: (secondCategory: string) => void
   menu: IMenuItem[];
 }
 
@@ -49,23 +48,31 @@ export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [currentMenu, setCurrentMenu] = useState(menu);
+  const [firstLevelMenuActive, setFirstLevelMenuActive] = useState(
+    TopLevelCategory.Courses
+  );
 
-  let active = TopLevelCategory.Courses;
+  // let active = TopLevelCategory.Courses;
+
+  const handleFirstLevelClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    id: TopLevelCategory
+  ) => {
+    e.preventDefault();
+    console.log("firstLevelMenuActive:", firstLevelMenuActive);
+    setFirstLevelMenuActive(id);
+  };
 
   const handlSecondLevelClick = (secondCategory: string) => {
     setCurrentMenu(
       currentMenu.map((m) => {
         if (m._id.secondCategory === secondCategory) {
-          m.isOpen = true;
-        } else {
-          m.isOpen = false;
+          m.isOpen = !m.isOpen;
         }
         return m;
       })
     );
   };
-
-  console.log("currentMenu: ", currentMenu);
 
   const buildFirstLevel = () => {
     return (
@@ -74,14 +81,15 @@ export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
           <div key={menu.route}>
             <a href={`/${menu.route}`}>
               <div
+                onClick={(e) => handleFirstLevelClick(e, menu.id)}
                 className={cn(styles.firstLevel, {
-                  [styles.firstLevelActive]: menu.id === active,
+                  [styles.firstLevelActive]: menu.id === firstLevelMenuActive,
                 })}>
                 {menu.icon}
                 <span>{menu.name}</span>
               </div>
             </a>
-            {menu.id === active && buildSecondLevel(menu)}
+            {menu.id === firstLevelMenuActive && buildSecondLevel(menu)}
           </div>
         ))}
       </>
