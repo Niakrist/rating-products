@@ -6,7 +6,7 @@ import {
 } from "@/interfaces/menu.interfaces";
 import { TopLevelCategory } from "@/interfaces/page.interface";
 import { Icon } from "@/ui";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Menu.module.css";
 import cn from "classnames";
 // import { useRouter } from "next/router";
@@ -40,19 +40,32 @@ const firstLevelMenu: IFirstLevelMenuItem[] = [
 ];
 
 interface IMenuProps {
+  // setMenu?: (secondCategory: string) => void
   menu: IMenuItem[];
 }
 
-export function Menu({ menu }: IMenuProps): React.JSX.Element {
+export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  // console.log("router: ", router);
-  // console.log("pathname: ", pathname);
-  // console.log("searchParams: ", searchParams);
+  const [currentMenu, setCurrentMenu] = useState(menu);
 
   let active = TopLevelCategory.Courses;
+
+  const handlSecondLevelClick = (secondCategory: string) => {
+    setCurrentMenu(
+      currentMenu.map((m) => {
+        if (m._id.secondCategory === secondCategory) {
+          m.isOpen = true;
+        } else {
+          m.isOpen = false;
+        }
+        return m;
+      })
+    );
+  };
+
+  console.log("currentMenu: ", currentMenu);
 
   const buildFirstLevel = () => {
     return (
@@ -77,25 +90,27 @@ export function Menu({ menu }: IMenuProps): React.JSX.Element {
   const buildSecondLevel = (menuItem: IFirstLevelMenuItem) => {
     return (
       <div className={styles.secondBlock}>
-        {menu.map((m) => {
-          if (
-            m.pages.map((p) => {
-              return p.alias.includes(pathname.split("/")[2]);
-            })
-          ) {
-            m.isOpen = true;
-          } else {
-            m.isOpen = false;
-          }
-
+        {currentMenu.map((m) => {
+          m.pages.map((p) => {
+            const path = pathname.split("/")[2];
+            if (p.alias.includes(path)) {
+              m.isOpen = true;
+            }
+          });
           return (
             <div key={m._id.secondCategory}>
-              <div className={styles.secondLevel}>{m._id.secondCategory}</div>
+              <div
+                onClick={() => handlSecondLevelClick(m._id.secondCategory)}
+                className={cn(styles.secondLevel, {
+                  [styles.secondLevelActive]: m.isOpen,
+                })}>
+                {m._id.secondCategory}
+              </div>
               <div
                 className={cn(styles.secondLevelBlock, {
                   [styles.secondLevelBlockOpened]: m.isOpen,
                 })}>
-                {buildThirdLevel(m.pages, menuItem.route)}
+                {m.isOpen && buildThirdLevel(m.pages, menuItem.route)}
               </div>
             </div>
           );
@@ -108,7 +123,7 @@ export function Menu({ menu }: IMenuProps): React.JSX.Element {
       <a
         key={p._id}
         className={cn(styles.thridLevel, {
-          [styles.thridLevelActive]: false,
+          [styles.thridLevelActive]: p.alias === pathname.split("/")[2],
         })}
         href={`/${route}/${p.alias}`}>
         {p.category}
@@ -116,5 +131,9 @@ export function Menu({ menu }: IMenuProps): React.JSX.Element {
     ));
   };
 
-  return <div className={styles.menu}>{buildFirstLevel()}</div>;
+  return (
+    <div {...props} className={styles.menu}>
+      {buildFirstLevel()}
+    </div>
+  );
 }

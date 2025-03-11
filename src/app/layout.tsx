@@ -6,6 +6,7 @@ import cn from "classnames";
 
 import "./globals.css";
 import styles from "./Layout.module.css";
+import { Menu } from "@/components/Menu/Menu";
 
 const getNotoSana = Noto_Sans({
   variable: "--font-noto-sans",
@@ -30,6 +31,9 @@ export default async function RootLayout({
     <html lang="ru">
       <body className={cn(getNotoSana.className, styles.wrapper)}>
         <Header className={styles.header} />
+        {/* <div className={styles.sidebar}>
+          <Menu menu={menu} />
+        </div> */}
         <Sidebar menu={menu} className={styles.sidebar} />
         <div className={styles.content}>{children}</div>
         <Footer className={styles.footer} />

@@ -37,12 +37,20 @@
   line-height: 16px;
 }
 
+.secondLevelActive {
+  color: red;
+}
+
 .secondLevelBlock {
+  display: none;
 }
 
 .secondLevelBlockOpened {
+  display: block;
+}
+
+.secondLevelBlockOpened:last-child {
   margin-bottom: 20px;
-  border-bottom: 1px solid red;
 }
 
 .thridLevel {

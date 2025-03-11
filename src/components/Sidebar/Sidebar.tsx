@@ -5,8 +5,13 @@ import { ISidebarProps } from "./Sidebar.props";
 
 export const Sidebar = ({
   menu,
+  className,
   ...props
 }: ISidebarProps & { menu: IMenuItem[] }) => {
-  // if (!menu) return <div>loading</div>;
-  return <Menu {...props} menu={menu} />;
+  if (!menu) return <div>loading</div>;
+  return (
+    <div className={className}>
+      <Menu {...props} menu={menu} />
+    </div>
+  );
 };
