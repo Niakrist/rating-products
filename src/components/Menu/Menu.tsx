@@ -5,46 +5,28 @@ import {
   IMenuItem,
 } from "@/interfaces/menu.interfaces";
 import { TopLevelCategory } from "@/interfaces/page.interface";
-import { Icon } from "@/ui";
 import React, { useEffect, useState } from "react";
 import styles from "./Menu.module.css";
 import cn from "classnames";
 import { usePathname } from "next/navigation";
 import { getMenu } from "@/api/menu";
 import Link from "next/link";
-
-const firstLevelMenu: IFirstLevelMenuItem[] = [
-  {
-    route: "courses",
-    name: "Курсы",
-    icon: <Icon name="iconHat" />,
-    id: TopLevelCategory.Courses,
-  },
-  {
-    route: "services",
-    name: "Сервисы",
-    icon: <Icon name="iconCloud" />,
-    id: TopLevelCategory.Services,
-  },
-  {
-    route: "books",
-    name: "Книги",
-    icon: <Icon name="iconBook" />,
-    id: TopLevelCategory.Books,
-  },
-  {
-    route: "products",
-    name: "Продукты",
-    icon: <Icon name="iconProduct" />,
-    id: TopLevelCategory.Products,
-  },
-];
+import { firstLevelMenu } from "@/helpers/helpers";
 
 export function Menu({ ...props }): React.JSX.Element {
   const pathname = usePathname();
   const [currentMenu, setCurrentMenu] = useState<IMenuItem[]>([]);
-  const [firstLevelMenuActive, setFirstLevelMenuActive] = useState(
-    TopLevelCategory.Courses
+
+  const getFirstLevel = () => {
+    const currentRout = pathname.split("/")[1];
+    const topLevelCategory = firstLevelMenu.find(
+      (m) => m.route === currentRout
+    );
+    return topLevelCategory?.id || TopLevelCategory.Courses;
+  };
+
+  const [firstLevelMenuActive, setFirstLevelMenuActive] = useState(() =>
+    getFirstLevel()
   );
 
   useEffect(() => {

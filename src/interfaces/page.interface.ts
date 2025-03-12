@@ -27,8 +27,8 @@ export interface ITopPageModel {
   createdAt: string;
   updatedAt: string;
   hh: HhData;
-  qas: any[];
-  addresses: any[];
+  // qas: any[];
+  // addresses: any[];
   categoryOn: string;
   blog: Blog;
   sravnikus: Sravnikus;
@@ -61,13 +61,13 @@ export interface Blog {
 export interface Sravnikus {
   metaTitle: string;
   metaDescription: string;
-  qas: any[];
+  // qas: any[];
   _id: string;
 }
 
 export interface Learningclub {
   metaTitle: string;
   metaDescription: string;
-  qas: any[];
+  // qas: any[];
   _id: string;
 }

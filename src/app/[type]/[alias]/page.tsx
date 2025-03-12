@@ -4,17 +4,26 @@ import type { Metadata } from "next/types";
 import { notFound } from "next/navigation";
 import React from "react";
 import { getMenu } from "@/api/menu";
+import { firstLevelMenu } from "@/helpers/helpers";
 
 export const metadata: Metadata = {
   title: "Страница",
 };
 
 export async function generateStaticParams() {
-  const menu = await getMenu(0);
+  const params = [];
 
-  return menu.flatMap((item) =>
-    item.pages.map((page) => ({ alias: page.alias }))
-  );
+  for (const itemMenu of firstLevelMenu) {
+    const menu = await getMenu(itemMenu.id);
+    const aliases = menu.flatMap((item) =>
+      item.pages.map((page) => ({
+        alias: page.alias,
+        type: itemMenu.route,
+      }))
+    );
+    params.push(...aliases);
+  }
+  return params;
 }
 
 interface ICoursesPageProps {

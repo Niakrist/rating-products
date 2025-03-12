@@ -1,20 +1,7 @@
 import React from "react";
 import { Button, Htag, P, Tag } from "@/ui";
-import { IMenuItem } from "@/interfaces/menu.interfaces";
-import { Menu } from "@/components/Menu/Menu";
-import { getMenu } from "@/api/menu";
-import { getProducts } from "@/api/products";
-
-interface IHomeProps {
-  menu: IMenuItem[];
-  firstCategory: number;
-}
 
 export default async function Home() {
-  // const [rating, setRating] = useState<number>(2);
-
-  const products = await getProducts("Photoshop", 10);
-
   return (
     <article>
       <Htag tag="h1">Главная страница</Htag>

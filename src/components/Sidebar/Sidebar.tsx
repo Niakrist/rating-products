@@ -1,4 +1,3 @@
-import { IMenuItem } from "@/interfaces/menu.interfaces";
 import React from "react";
 import { Search, Menu } from "@/components";
 import { ISidebarProps } from "./Sidebar.props";

@@ -2,7 +2,7 @@ import React from "react";
 import { IIconProps } from "./Icon.props";
 import IconArrow from "./icons/IconArrow";
 import IconBook from "./icons/IconBook";
-import IconCloud from "./icons/iconCloud";
+import IconCloud from "./icons/IconCloud";
 import IconHat from "./icons/IconHat";
 import IconLogo from "./icons/IconLogo";
 import IconProduct from "./icons/IconProduct";

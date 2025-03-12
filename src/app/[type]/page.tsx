@@ -1,3 +1,4 @@
+import { firstLevelMenu } from "@/helpers/helpers";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +8,10 @@ export const metadata: Metadata = {
 
 interface ITypePageProps {
   params: Promise<{ type: string }>;
+}
+
+export async function generateStaticParams() {
+  return firstLevelMenu.map((item) => ({ type: item.route }));
 }
 
 export default async function TypePage({ params }: ITypePageProps) {
