@@ -1,4 +1,4 @@
 export type ISidebarProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLElement>,
-  HTMLElement
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
 >;

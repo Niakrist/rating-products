@@ -17,13 +17,13 @@ export async function generateStaticParams() {
   );
 }
 
-interface IProductsPageProps {
+interface ICoursesPageProps {
   params: Promise<{
     alias: string;
   }>;
 }
 
-export default async function ProductsPage({ params }: IProductsPageProps) {
+export default async function CoursesPage({ params }: ICoursesPageProps) {
   const { alias } = await params;
 
   const pageData = await getPage(alias);
@@ -32,5 +32,5 @@ export default async function ProductsPage({ params }: IProductsPageProps) {
     notFound();
   }
 
-  return <div>Product {pageData?.title}</div>;
+  return <div>CoursesPage: {pageData?.title}</div>;
 }

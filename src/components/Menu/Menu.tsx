@@ -6,11 +6,12 @@ import {
 } from "@/interfaces/menu.interfaces";
 import { TopLevelCategory } from "@/interfaces/page.interface";
 import { Icon } from "@/ui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Menu.module.css";
 import cn from "classnames";
-// import { useRouter } from "next/router";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { getMenu } from "@/api/menu";
+import Link from "next/link";
 
 const firstLevelMenu: IFirstLevelMenuItem[] = [
   {
@@ -39,20 +40,20 @@ const firstLevelMenu: IFirstLevelMenuItem[] = [
   },
 ];
 
-interface IMenuProps {
-  menu: IMenuItem[];
-}
-
-export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
-  const router = useRouter();
+export function Menu({ ...props }): React.JSX.Element {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [currentMenu, setCurrentMenu] = useState(menu);
+  const [currentMenu, setCurrentMenu] = useState<IMenuItem[]>([]);
   const [firstLevelMenuActive, setFirstLevelMenuActive] = useState(
     TopLevelCategory.Courses
   );
 
-  // let active = TopLevelCategory.Courses;
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const newMenu = await getMenu(firstLevelMenuActive);
+      setCurrentMenu(newMenu);
+    };
+    fetchMenu();
+  }, [firstLevelMenuActive]);
 
   const handleFirstLevelClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -79,7 +80,7 @@ export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
       <>
         {firstLevelMenu.map((menu) => (
           <div key={menu.route}>
-            <a href={`/${menu.route}`}>
+            <Link href={`/${menu.route}`}>
               <div
                 onClick={(e) => handleFirstLevelClick(e, menu.id)}
                 className={cn(styles.firstLevel, {
@@ -88,7 +89,7 @@ export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
                 {menu.icon}
                 <span>{menu.name}</span>
               </div>
-            </a>
+            </Link>
             {menu.id === firstLevelMenuActive && buildSecondLevel(menu)}
           </div>
         ))}
@@ -128,14 +129,14 @@ export function Menu({ menu, ...props }: IMenuProps): React.JSX.Element {
   };
   const buildThirdLevel = (pages: IPageItem[], route: string) => {
     return pages.map((p) => (
-      <a
+      <Link
         key={p._id}
         className={cn(styles.thridLevel, {
           [styles.thridLevelActive]: p.alias === pathname.split("/")[2],
         })}
         href={`/${route}/${p.alias}`}>
         {p.category}
-      </a>
+      </Link>
     ));
   };
 

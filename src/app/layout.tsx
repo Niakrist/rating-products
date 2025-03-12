@@ -1,12 +1,10 @@
 import { Footer, Header, Sidebar } from "@/components";
 import { Metadata } from "next/types";
 import { Noto_Sans } from "next/font/google";
-import { getMenu } from "@/api/menu";
 import cn from "classnames";
 
 import "./globals.css";
 import styles from "./Layout.module.css";
-import { Menu } from "@/components/Menu/Menu";
 
 const getNotoSana = Noto_Sans({
   variable: "--font-noto-sans",
@@ -25,8 +23,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const menu = await getMenu(0);
-
   return (
     <html lang="ru">
       <body className={cn(getNotoSana.className, styles.wrapper)}>
@@ -34,7 +30,7 @@ export default async function RootLayout({
         {/* <div className={styles.sidebar}>
           <Menu menu={menu} />
         </div> */}
-        <Sidebar menu={menu} className={styles.sidebar} />
+        <Sidebar className={styles.sidebar} />
         <div className={styles.content}>{children}</div>
         <Footer className={styles.footer} />
       </body>
