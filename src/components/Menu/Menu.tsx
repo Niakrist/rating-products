@@ -22,6 +22,7 @@ export function Menu({ ...props }): React.JSX.Element {
     const topLevelCategory = firstLevelMenu.find(
       (m) => m.route === currentRout
     );
+
     return topLevelCategory?.id || TopLevelCategory.Courses;
   };
 
@@ -42,7 +43,6 @@ export function Menu({ ...props }): React.JSX.Element {
     id: TopLevelCategory
   ) => {
     e.preventDefault();
-    console.log("firstLevelMenuActive:", firstLevelMenuActive);
     setFirstLevelMenuActive(id);
   };
 

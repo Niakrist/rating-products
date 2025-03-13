@@ -8,6 +8,5 @@ export async function getMenu(firstCategory: number): Promise<IMenuItem[]> {
     headers: new Headers({ "Content-Type": "application/json" }),
   });
   const data = await response.json();
-  console.log("API response:", data);
   return data;
 }
