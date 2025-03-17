@@ -2,10 +2,10 @@ import { getPage } from "@/api/page";
 
 import type { Metadata } from "next/types";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
+import React from "react";
 import { getMenu } from "@/api/menu";
 import { firstLevelMenu } from "@/helpers/helpers";
-import { TopPage } from "@/components";
+import { TopPageComponent } from "@/components";
 import { getProducts } from "@/api/products";
 
 export const metadata: Metadata = {
@@ -53,9 +53,7 @@ export default async function TopPage({ params }: ITopPageProps) {
   return (
     <div>
       CoursesPage: {pageData?.title}
-      {/* <Suspense>
-        <TopPage page={pageData} products={products} firstCategory={0} />
-      </Suspense> */}
+      <TopPageComponent page={pageData} products={products} firstCategory={0} />
     </div>
   );
 }
