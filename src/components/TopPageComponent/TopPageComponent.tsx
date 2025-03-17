@@ -8,10 +8,13 @@ export const TopPageComponent = ({
   products,
   firstCategory,
 }: ITopPageProps): React.JSX.Element => {
+  console.log("++++++++");
+  console.log("products: ", products);
+  console.log("--------");
   return (
     <>
       <h1>page.title {page.title}</h1>
-      <div>{page.title}</div>;
+      <div>{page.title}</div>
     </>
   );
 };

@@ -40,11 +40,11 @@ export default async function TopPage({ params }: ITopPageProps) {
   const { alias, type } = await params;
 
   const pageData = await getPage(alias);
-  const products = await getProducts("typescript", 10);
 
   if (!pageData) {
     notFound();
   }
+  const products = await getProducts(pageData?.category, 10);
 
   if (!firstLevelMenu.find((m) => m.route === type)) {
     notFound();
