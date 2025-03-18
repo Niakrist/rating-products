@@ -5,3 +5,4 @@ export * from "./Footer/Footer";
 export * from "./Search/Search";
 export * from "./Menu/Menu";
 export * from "./TopPageComponent/TopPageComponent";
+export * from "./HHData/HHData";

@@ -46,14 +46,19 @@ export default async function TopPage({ params }: ITopPageProps) {
   }
   const products = await getProducts(pageData?.category, 10);
 
-  if (!firstLevelMenu.find((m) => m.route === type)) {
+  const firstCategoryItem = firstLevelMenu.find((m) => m.route === type);
+
+  if (!firstCategoryItem) {
     notFound();
   }
 
   return (
     <div>
-      CoursesPage: {pageData?.title}
-      <TopPageComponent page={pageData} products={products} firstCategory={0} />
+      <TopPageComponent
+        page={pageData}
+        products={products}
+        firstCategory={firstCategoryItem.id}
+      />
     </div>
   );
 }

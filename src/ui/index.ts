@@ -3,3 +3,4 @@ export * from "./Tag/Tag";
 export * from "./Htag/Htag";
 export * from "./Icon/Icon";
 export * from "./Button/Button";
+export * from "./Card/Card";

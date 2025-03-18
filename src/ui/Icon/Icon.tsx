@@ -6,6 +6,7 @@ import IconCloud from "./icons/IconCloud";
 import IconHat from "./icons/IconHat";
 import IconLogo from "./icons/IconLogo";
 import IconProduct from "./icons/IconProduct";
+import IconRateHH from "./icons/IconRateHH";
 import IconSearch from "./icons/IconSearch";
 import IconStar from "./icons/IconStar";
 
@@ -19,6 +20,7 @@ export const Icon: React.FC<IIconProps> = ({ name, ...props }) => {
     iconProduct: <IconProduct {...props} />,
     iconSearch: <IconSearch {...props} />,
     iconLogo: <IconLogo {...props} />,
+    iconRateHH: <IconRateHH {...props} />,
   };
 
   return icons[name];

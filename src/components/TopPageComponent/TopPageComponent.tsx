@@ -1,4 +1,6 @@
+import { Card, Htag, P, Tag } from "@/ui";
 import React from "react";
+import { HHData } from "@/components";
 
 import styles from "./TopPageComponent.module.css";
 import { ITopPageProps } from "./TopPageComponent.props";
@@ -9,12 +11,31 @@ export const TopPageComponent = ({
   firstCategory,
 }: ITopPageProps): React.JSX.Element => {
   console.log("++++++++");
-  console.log("products: ", products);
   console.log("--------");
   return (
-    <>
-      <h1>page.title {page.title}</h1>
-      <div>{page.title}</div>
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.title}>
+        <Htag tag="h1">{page.title}</Htag>
+        {products && (
+          <Tag color="grey" size="medium">
+            {products.length}
+          </Tag>
+        )}
+        <span>Сортировка</span>
+      </div>
+
+      <ul>
+        {products &&
+          products.map((product) => <li key={product._id}>{product.title}</li>)}
+      </ul>
+
+      <div className={styles.hhTitle}>
+        <Htag tag="h2">Вакансии - {page.category}</Htag>
+        <Tag color="red" size="medium">
+          hh.ru
+        </Tag>
+      </div>
+      <HHData {...page.hh} />
+     </div>
   );
 };
