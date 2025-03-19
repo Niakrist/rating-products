@@ -4,14 +4,13 @@ import { HHData } from "@/components";
 
 import styles from "./TopPageComponent.module.css";
 import { ITopPageProps } from "./TopPageComponent.props";
+import { TopLevelCategory } from "@/interfaces/page.interface";
 
 export const TopPageComponent = ({
   page,
   products,
   firstCategory,
 }: ITopPageProps): React.JSX.Element => {
-  console.log("++++++++");
-  console.log("--------");
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -35,7 +34,7 @@ export const TopPageComponent = ({
           hh.ru
         </Tag>
       </div>
-      <HHData {...page.hh} />
-     </div>
+      {firstCategory === TopLevelCategory.Courses && <HHData {...page.hh} />}
+    </div>
   );
 };

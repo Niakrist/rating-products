@@ -12,6 +12,7 @@ export const Card: React.FC<ICardProps> = ({
 }) => {
   return (
     <div
+      {...props}
       className={cn(styles.card, className, {
         [styles.blue]: color === "blue",
         [styles.white]: color === "white",

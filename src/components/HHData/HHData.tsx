@@ -6,6 +6,7 @@ import cn from "classnames";
 
 import { IHHDataProps } from "./HHData.props";
 import { Card, Icon } from "@/ui";
+import { priceRub } from "@/helpers/helpers";
 
 export const HHData = ({
   count,
@@ -21,10 +22,34 @@ export const HHData = ({
       </Card>
 
       <Card color="white" className={styles.salary}>
-        <div className={styles.title}>Начальный</div>
-        <div className={styles.salaryValue}>{juniorSalary}</div>
-        <div className={styles.rate}>
-          <Icon name="iconRateHH" />
+        <div>
+          <div className={styles.title}>Начальный</div>
+          <div className={styles.salaryValue}>{priceRub(juniorSalary)}</div>
+          <div className={styles.rate}>
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+            <Icon name="iconRateHH" className={styles.iconRateHH} />
+            <Icon name="iconRateHH" className={styles.iconRateHH} />
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.title}>Средний</div>
+          <div className={styles.salaryValue}>{priceRub(middleSalary)}</div>
+          <div className={styles.rate}>
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+            <Icon name="iconRateHH" className={styles.iconRateHH} />
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.title}>Профессионал</div>
+          <div className={styles.salaryValue}>{priceRub(seniorSalary)}</div>
+          <div className={styles.rate}>
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+            <Icon name="iconRateHH" className={styles.iconRateHHActiv} />
+          </div>
         </div>
       </Card>
     </div>
